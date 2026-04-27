@@ -10,12 +10,12 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     Vector2 moveInput;
 
-    void Awake()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();    
     }
 
-    void Update()
+    private void Update()
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
         moveInput = new Vector2(x, y).normalized;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         rb.MovePosition(rb.position + moveInput * _speed * Time.fixedDeltaTime);
     }
