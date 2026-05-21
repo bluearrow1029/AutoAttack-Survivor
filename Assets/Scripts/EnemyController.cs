@@ -6,9 +6,11 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField]
     float _speed = 2f;
+    bool isLive = true;
 
     Transform target;
     Rigidbody2D rb;
+
 
     private void Awake()
     {
@@ -22,10 +24,14 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!isLive)
+            return;
+
         if (target == null)
             return;
 
         Vector2 direction = ((Vector2)target.position - rb.position).normalized;
         rb.MovePosition(rb.position + direction * _speed * Time.fixedDeltaTime);
+        rb.velocity = Vector2.zero;
     }
 }
