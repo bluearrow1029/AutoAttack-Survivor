@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour
     float _speed = 2f;
     bool isLive = true;
 
-    Transform target;
+    Rigidbody2D target;
     Rigidbody2D rb;
 
 
@@ -16,12 +16,6 @@ public class EnemyController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
-
-    private void Start()
-    {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
-    }
-
     private void FixedUpdate()
     {
         if (!isLive)
@@ -33,5 +27,10 @@ public class EnemyController : MonoBehaviour
         Vector2 direction = ((Vector2)target.position - rb.position).normalized;
         rb.MovePosition(rb.position + direction * _speed * Time.fixedDeltaTime);
         rb.velocity = Vector2.zero;
+    }
+
+    private void OnEnable()
+    {
+        target = GameManager.instance.player.GetComponent<Rigidbody2D>();
     }
 }

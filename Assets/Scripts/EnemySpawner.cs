@@ -10,10 +10,14 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     float spawnInterval = 2f;
 
-    [SerializeField]
-    float spawnDistance = 8f;
-
     float spawnTimer;
+
+    public Transform[] spawnPoint;
+
+    private void Awake()
+    {
+        spawnPoint = GetComponentsInChildren<Transform>();
+    }
 
     private void Update()
     {
@@ -28,9 +32,7 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        Vector2 randomDirection = Random.insideUnitCircle.normalized;
-        Vector2 spawnPosition = (Vector2)transform.position + randomDirection * spawnDistance;
-
-        Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        GameObject enemy = GameManager.instance.pool.Get(Random.Range(0,1));
+        enemy.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
     }
 }
