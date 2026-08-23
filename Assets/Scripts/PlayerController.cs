@@ -12,26 +12,38 @@ public class PlayerController : MonoBehaviour
     Animator anim;
     public Vector2 moveInput;
 
+    public Scanner scanner;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        scanner = GetComponent<Scanner>();
     }
 
     private void Update()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
     }
 
     private void FixedUpdate()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         rb.MovePosition(rb.position + moveInput.normalized * speed * Time.fixedDeltaTime);
     }
 
     private void LateUpdate()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         anim.SetFloat("Speed", moveInput.magnitude);
 
         if (moveInput.x != 0)

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2957477354883316589}
   - component: {fileID: 503575307053938917}
   - component: {fileID: 3417904716802662184}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -191,6 +191,7 @@ MonoBehaviour:
   - {fileID: 22100000, guid: b4daf5134ddb594429ffff00715e341f, type: 2}
   - {fileID: 22100000, guid: a91e807a240a79d4eae42ead468e2c08, type: 2}
   - {fileID: 22100000, guid: 328de3ec433b70b408619a9b98307488, type: 2}
+  target: {fileID: 0}
 --- !u!114 &3417904716802662184
 MonoBehaviour:
   m_ObjectHideFlags: 0
