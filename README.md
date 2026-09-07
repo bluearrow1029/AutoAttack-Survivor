@@ -11,6 +11,12 @@
 
 </div>
 
+<p align="center">
+  <img src="./Docs/Images/gameplay-preview.gif"
+       width="800"
+       alt="AutoAttack Survivor 게임 플레이">
+</p>
+
 > 🎮 **게임 플레이 영상:** https://www.youtube.com/watch?v=QfOOeNC8odk
 
 ---
