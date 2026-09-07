@@ -16,6 +16,9 @@ public class ItemData : ScriptableObject
     public string itemDesc;
     public Sprite itemIcon;
 
+    [Header("# Consumable Data")]
+    public float healAmount;
+
     [Header("# Level Data")]
     public float baseDamage;
     public int baseCount;
@@ -24,4 +27,5 @@ public class ItemData : ScriptableObject
 
     [Header("# Weapon")]
     public GameObject projectile;
+
 }

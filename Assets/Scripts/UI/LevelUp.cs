@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LevelUp : MonoBehaviour
@@ -38,9 +39,32 @@ public class LevelUp : MonoBehaviour
             item.gameObject.SetActive(false);
         }
 
-        foreach(Item item in items)
+        int[] ran = new int[3];
+        while (true)
         {
-            item.gameObject.SetActive(true);
+            ran[0] = Random.Range(0, items.Length);
+            ran[1] = Random.Range(0, items.Length);
+            ran[2] = Random.Range(0, items.Length);
+
+            if (ran[0] != ran[1] && ran[1] != ran[2] && ran[0] != ran[2])
+                break;
         }
+
+        for (int index = 0; index < ran.Length; index++)
+        {
+            Item ranItem = items[ran[index]];
+
+            // 만렙이면 소비아이템으로 대체
+            if(ranItem.level == ranItem.data.damages.Length)
+            {
+                items[2].gameObject.SetActive(true);
+            }
+            else
+            {
+                ranItem.gameObject.SetActive(true);
+            }
+        }
+
+        
     }
 }

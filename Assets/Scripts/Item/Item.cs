@@ -28,13 +28,23 @@ public class Item : MonoBehaviour
 
     private void OnEnable()
     {
-        textLevel.text = "Lv." + (level + 1);
+        if (data.itemType == ItemData.ItemType.Heal)
+        {
+            textLevel.text = "아이템";
+        }
+        else
+        {
+            textLevel.text = "Lv." + (level + 1);
+        }
 
         switch (data.itemType)
         {
             case ItemData.ItemType.Melee:
             case ItemData.ItemType.Range:
                 textDesc.text = string.Format(data.itemDesc, data.damages[level] * 100, data.counts[level]);
+                break;
+            case ItemData.ItemType.Heal:
+                textDesc.text = string.Format(data.itemDesc, data.healAmount);
                 break;
         }
     }
@@ -63,11 +73,14 @@ public class Item : MonoBehaviour
                 }
 
                 break;
+            case ItemData.ItemType.Heal:
+                GameManager.instance.Heal(data.healAmount);
+                return;
         }
 
         level++;
 
-        if(level == data.damages.Length)
+        if(level >= data.damages.Length)
         {
             GetComponent<Button>().interactable = false;
         }
